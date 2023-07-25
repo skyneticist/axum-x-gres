@@ -28,3 +28,10 @@ pub struct UpdateNoteSchema {
     pub category: Option<String>,
     pub published: Option<bool>,
 }
+
+#[derive(Serialize, Deserialize, Debug, Default)]
+pub struct CreateUserSchema {
+    pub name: Option<String>,
+    pub display_name: Option<String>,
+    pub email: Option<String>,
+}

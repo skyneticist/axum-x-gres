@@ -7,8 +7,8 @@ use std::env;
 use std::sync::Arc;
 
 use crate::handler::{
-    create_note_handler, debug_logs_handler, health_check_handler, home_base_handler,
-    note_list_handler, users_handler,
+    create_note_handler, create_user_handler, debug_logs_handler, health_check_handler,
+    home_base_handler, note_list_handler, user_list_handler,
 };
 
 #[derive(Clone)]
@@ -27,8 +27,9 @@ pub fn router_create(appstate: Option<Arc<AppState>>) -> Router {
         .route("/api/health", get(health_check_handler))
         .route("/api/dev/debug/logs", get(debug_logs_handler))
         .route("/api/notes", post(create_note_handler))
-        .route("/api/users", get(users_handler))
+        .route("/api/users", get(user_list_handler))
         .route("/api/notes", get(note_list_handler))
+        .route("/api/users", post(create_user_handler))
         .with_state(app_state)
 }
 
